@@ -1,0 +1,19 @@
+#!/bin/sh
+
+node blah.js 8003 &
+PID1=$!
+
+node blah.js 8004 &
+PID2=$!
+
+
+function control_c() {
+	echo "Closing Servers..."
+	kill -9 $PID1 $PID2
+	exit $?
+}
+
+trap control_c SIGINT
+trap control_c SIGTERM
+
+while true; do read x; done;

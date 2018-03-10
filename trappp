@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+function control_c() {
+	echo "Closing Servers..."
+}
+
+trap control_c SIGINT
+trap control_c SIGTERM
+
+while true; do read x; done;
